@@ -1,3 +1,12 @@
+// Store important variables
+
+
+
+
+
+
+
+
 //Basic operator functions
 function add(a, b) {
     return a + b;
