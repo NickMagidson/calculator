@@ -1,5 +1,6 @@
 // Store important variables
-
+let firstOperator = '';
+let secondOperator = '';
 
 
 
