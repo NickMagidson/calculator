@@ -12,9 +12,6 @@ const currentOperandTextElement = document.querySelector('[data-current-operand]
 
 
 
-
-
-
 //Basic operator functions
 function add(a, b) {
     return a + b;
