@@ -5,22 +5,22 @@ class Calculator {
         this.currentOperandTextElement = currentOperandTextElement;
         this.clear();
     }
-}
+
     //Clear function
-    function clear() {
+    clear() {
         this.currentOperand = '';
         this.previousOperand = '';
         this.operation = undefined;
     };
 
     //Append function
-    function appendNumber(num) {
+    appendNumber(num) {
         if (num === '.' && this.currentOperand.includes('.')) return
         this.currentOperand = this.currentOperand.toString() + num.toString()
     };
 
 
-    function chooseOperation(operation) {
+    chooseOperation(operation) {
         if (this.currentOperand === '') return
         if (this.previousOperand !== '') {
             this.compute()
@@ -31,7 +31,7 @@ class Calculator {
     };
 
 
-    function compute() {
+    compute() {
         let computation;
         const prev = parseFloat(this.previousOperand);
         const current = parseFloat(this.currentOperand);
@@ -58,13 +58,13 @@ class Calculator {
     };
 
 
-    function getDisplayNumber(num) {
+    getDisplayNumber(num) {
 
     }
 
 
-    
-    function updateDisplay() {
+
+    updateDisplay() {
         this.currentOperandTextElement.innerText =
             this.getDisplayNumber(this.currentOperand)
     if (this.operation != null) {
@@ -74,7 +74,7 @@ class Calculator {
       this.previousOperandTextElement.innerText = ''
     }
   }
-
+};
 // Store important variables
 let firstOperand = '';
 let secondOperand = '';
