@@ -11,6 +11,50 @@ const currentOperandTextElement = document.querySelector('[data-current-operand]
 
 
 
+// Calculator function
+class Calculator {
+    constructor(previousOperandTextElement, currentOperandTextElement) {
+        this.previousOperandTextElement = previousOperandTextElement;
+        this.currentOperandTextElement = currentOperandTextElement;
+        this.clear;
+    }
+}
+
+//Clear function
+function clear() {
+    this.currentOperand = '';
+    this.previousOperand = '';
+    this.operation = undefined;
+};
+
+
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
+
+
+
+function appendNumber(num) {
+
+};
+
+
+function chooseNumber(operation) {
+
+};
+
+
+function compute() {
+
+};
+
+
+function updateDisplay() {
+
+};
+
+
+
+
+
 
 //Basic operator functions
 function add(a, b) {
