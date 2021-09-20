@@ -3,44 +3,77 @@ class Calculator {
     constructor(previousOperandTextElement, currentOperandTextElement) {
         this.previousOperandTextElement = previousOperandTextElement;
         this.currentOperandTextElement = currentOperandTextElement;
-        this.clear;
+        this.clear();
     }
 }
+    //Clear function
+    function clear() {
+        this.currentOperand = '';
+        this.previousOperand = '';
+        this.operation = undefined;
+    };
 
-//Clear function
-function clear() {
-    this.currentOperand = '';
-    this.previousOperand = '';
-    this.operation = undefined;
-};
-
-//Append function
-function appendNumber(num) {
-    if (num === '.' && this.currentOperand.includes('.')) return
-    this.currentOperand = this.currentOperand.toString() + num.toString()
-};
+    //Append function
+    function appendNumber(num) {
+        if (num === '.' && this.currentOperand.includes('.')) return
+        this.currentOperand = this.currentOperand.toString() + num.toString()
+    };
 
 
-function chooseOperation(operation) {
-    if (this.currentOperand === '') return
-    if (this.previousOperand !== '') {
-        this.compute()
+    function chooseOperation(operation) {
+        if (this.currentOperand === '') return
+        if (this.previousOperand !== '') {
+            this.compute()
+        }
+        this.operation = operation;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = '';
+    };
+
+
+    function compute() {
+        let computation;
+        const prev = parseFloat(this.previousOperand);
+        const current = parseFloat(this.currentOperand);
+        if (isNaN(prev) || isNaN(current)) return
+        switch (this.operation) {
+            case '+':
+                computation = prev + current
+                break;
+            case '-':
+                computation = prev - current
+                break;
+            case '*':
+                computation = prev * current
+                break;
+            case '÷':
+                computation = prev / current
+                break;
+            default:
+                return;
+        };
+        this.currentOperand = computation;
+        this.operation = undefined;
+        this.previousOperand = '';
+    };
+
+
+    function getDisplayNumber(num) {
+
     }
-    this.operation = operation;
-    this.previousOperand = this.currentOperand;
-    this.currentOperand = '';
-};
 
 
-function compute() {
-
-};
-
-
-function updateDisplay() {
-    this.currentOperandTextElement.innerText = this.currentOperand;
-};
-
+    
+    function updateDisplay() {
+        this.currentOperandTextElement.innerText =
+            this.getDisplayNumber(this.currentOperand)
+    if (this.operation != null) {
+      this.previousOperandTextElement.innerText =
+        `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+    } else {
+      this.previousOperandTextElement.innerText = ''
+    }
+  }
 
 // Store important variables
 let firstOperand = '';
@@ -68,48 +101,16 @@ operationButtons.forEach(button => {
         calculator.chooseOperation(button.innerText);
         calculator.updateDisplay();
     })
-})
+});
 
+equalsButton.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.compute();
+        calculator.updateDisplay();
+});
 
-
-
-//Basic operator functions
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
-// Operate function
-function operate(operator, a, b) {
-    a = Number(a);
-    b = Number(b);
-    switch (operator) {
-        case '+':
-            return add(a, b)
-        case '-':
-            return subtract(a, b)
-        case '*':
-            return multiply(a, b)
-        case '/':
-            if (b === 0) return null
-            else return divide(a, b)
-        default:
-            return null
-    }
-}
-
-
-
-
+allClearButton.addEventListener('click', button => {
+    calculator.clear();
+    calculator.updateDisplay();
+});
 
