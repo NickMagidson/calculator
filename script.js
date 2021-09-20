@@ -16,13 +16,19 @@ function clear() {
 
 //Append function
 function appendNumber(num) {
-    if (num === '.' && this.currentOperand.includes('.')) return;
-    this.currentOperand = this.currentOperand.toString() + num.toString();
+    if (num === '.' && this.currentOperand.includes('.')) return
+    this.currentOperand = this.currentOperand.toString() + num.toString()
 };
 
 
-function chooseNumber(operation) {
-
+function chooseOperation(operation) {
+    if (this.currentOperand === '') return
+    if (this.previousOperand !== '') {
+        this.compute()
+    }
+    this.operation = operation;
+    this.previousOperand = this.currentOperand;
+    this.currentOperand = '';
 };
 
 
@@ -49,12 +55,20 @@ const currentOperandTextElement = document.querySelector('[data-current-operand]
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
 
+
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText);
-        calculator.updateDisplay;
+        calculator.updateDisplay();
     })
 });
+
+operationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.chooseOperation(button.innerText);
+        calculator.updateDisplay();
+    })
+})
 
 
 
@@ -99,7 +113,3 @@ function operate(operator, a, b) {
 
 
 
-console.log(add(2, 2)) // 4
-console.log(subtract(5, 3)) // 2
-console.log(multiply(2, 5)) // 10
-console.log(divide(6, 3)) // 2
