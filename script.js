@@ -19,7 +19,7 @@ class Calculator {
         this.currentOperand = this.currentOperand.toString() + num.toString()
     };
 
-
+    //Choose Oper function
     chooseOperation(operation) {
         if (this.currentOperand === '') return
         if (this.previousOperand !== '') {
@@ -30,7 +30,7 @@ class Calculator {
         this.currentOperand = '';
     };
 
-
+    //Compute function
     compute() {
         let computation;
         const prev = parseFloat(this.previousOperand);
@@ -57,13 +57,13 @@ class Calculator {
         this.previousOperand = '';
     };
 
-
+    //Get display num function
     getDisplayNumber(num) {
 
     }
 
 
-
+    //Update screen function
     updateDisplay() {
         this.currentOperandTextElement.innerText =
             this.getDisplayNumber(this.currentOperand)
@@ -75,6 +75,8 @@ class Calculator {
     }
   }
 };
+
+
 // Store important variables
 let firstOperand = '';
 let secondOperand = '';
