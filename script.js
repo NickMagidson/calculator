@@ -75,7 +75,6 @@ class Calculator {
         }
     };
 
-
     //Update screen function
     updateDisplay() {
         this.currentOperandTextElement.innerText =
